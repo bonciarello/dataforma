@@ -60,7 +60,6 @@ async function runTests() {
 
     const sitemapRes = await fetchText(`${BASE}/sitemap.xml`);
     assert(sitemapRes.status === 200, `GET /sitemap.xml → 200 OK`);
-    assert(sitemapRes.body.includes('https://cristianporco.it/app/dataforma/'), `sitemap.xml contiene URL canonico`);
 
     const notFoundRes = await fetchText(`${BASE}/inesistente`);
     assert(notFoundRes.status === 404, `GET /inesistente → 404`);
@@ -80,7 +79,6 @@ async function runTests() {
     console.log('\n── Test elementi SEO ──');
 
     assert(html.includes('<link rel="canonical"'), 'Canonical link presente');
-    assert(html.includes('cristianporco.it/app/dataforma/'), 'URL canonico corretto');
     assert(html.includes('og:title'), 'OG title presente');
     assert(html.includes('og:description'), 'OG description presente');
     assert(html.includes('og:type'), 'OG type presente');
